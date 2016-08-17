@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+	<!-- 	<h:outputStylesheet library="css" name="../resources/css/style.css" /> -->
+	<h:outputStylesheet library="css" name="style.css" />
+	<title><ui:insert name="title" /></title>
+</h:head>
+
+<body>
+
+
+
+	<p:layout fullPage="true">
+
+		<ui:insert name="content">
+                    [Content will be inserted here]
+         </ui:insert>
+		<p:layoutUnit position="west" size="300" collapsible="false" footer=""
+			header="" id="nav-tab">
+			<p:panel position="center">
+				<p:menu>
+					<p:menuitem value="Home" outcome="home" icon="fa fa-home" />
+<!-- 					<p:menuitem rendered="#{empty identity.identifiedUser}" -->
+<!-- 			value="My Theater" outcome="/signin?faces-redirect=true" icon="fa fa-sign-in" ajax="false" /> -->
+				</p:menu>
+				<h:form id="identity-form">
+				<ui:include src="/template/identity.xhtml" />
+				</h:form>
+			</p:panel>
+			
+			<p:panel>
+				<h:graphicImage value="/resources/images/rsz_cinema-clipart.png"></h:graphicImage>
+			</p:panel>
+
+		</p:layoutUnit>
+	</p:layout>
+</body>
+</html>

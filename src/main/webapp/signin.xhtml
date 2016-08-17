@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+	<ui:define name="title">MallaCinema- Sign In</ui:define>
+
+	<ui:define name="content">
+
+			<p:layoutUnit position="center">
+				<p:accordionPanel multiple="false" activeIndex="0" id="login-tabs">
+					<p:tab title="Sign In " >
+					<p:messages globalOnly="true" autoUpdate="false" closable="true"/>
+						<h:form id="login">
+							<h:outputText value=" Email" />
+							<br />
+							<p:inputText id="mail" value="#{access.email}" required="true"
+								requiredMessage="Email is missing"></p:inputText>
+							<br />
+							<h:outputText value=" Password " />
+							<br />
+							<p:inputText id="pwd" type="password" value="#{access.password}"
+								required="true" requiredMessage="Password is missing">
+							</p:inputText>
+							<br />
+							<h:messages class="required-field" style="color:red;" for="login">
+							</h:messages>
+							<br />
+							<p:commandButton value="Log In" icon="ui-icon-circle-check"
+								action="#{access.doLogin()}" ajax="false"></p:commandButton>
+						</h:form>
+					</p:tab>
+
+				</p:accordionPanel>
+
+			</p:layoutUnit>
+		<br />
+	</ui:define>
+
+</ui:composition>

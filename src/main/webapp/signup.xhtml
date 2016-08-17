@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+	<ui:define name="title">MallaCinema-Sign Up</ui:define>
+
+	<ui:define name="content">
+
+		<p:layoutUnit position="center">
+			<p:accordionPanel multiple="false" activeIndex="0" id="tabs">
+
+				<p:tab title="Sign Up">
+				<p:messages globalOnly="true" autoUpdate="false" closable="true"/>
+				
+					<h:form id="register" enctype="multipart/form-data"
+						style="overflow:hidden;">
+						
+						<h:message for="RegisterGroupPanel" style="color:red;" />
+
+						<h:panelGrid columns="3" id="RegisterGroupPanel">
+
+							<h:outputLabel for="first_name" value="First Name" />
+							<p:inputText value="#{signup.firstName}" id="first_name"
+								required="true" requiredMessage="*" />
+							<h:message for="first_name" style="color: red;" />
+
+							<h:outputLabel for="name" value="Name" />
+							<p:inputText value="#{signup.name}" id="name" required="true"
+								requiredMessage="*" />
+							<h:message for="name" style="color: red;" />
+
+							<h:outputLabel for="email" value="Email" />
+							<p:inputText value="#{signup.email}" id="email" required="true"
+								requiredMessage="*" validatorMessage="Invalide Email">
+								<f:validateRegex
+									pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+							</p:inputText>
+							<h:message for="email" style="color: red;" />
+
+							<h:outputLabel for="password" value="Password" />
+							<p:inputText value="#{signup.password}" id="password"
+								required="true" type="password" requiredMessage="*">
+								<f:validator validatorId="validators.PasswordValidator" />
+								<f:attribute name="confirmPassword" value="#{confirmPassword}" />
+							</p:inputText>
+							<h:message for="password" style="color: red;" />
+
+							<h:outputLabel for="confirmPassword" value="Confirm Password " />
+							<p:inputText id="confirmPassword" required="true" type="password"
+								binding="#{confirmPassword}" requiredMessage="*" />
+							<h:message for="confirmPassword" style="color: red;" />
+
+							<h:outputLabel for="mobile_phone" value="Mobile Phone" />
+							<p:inputText value="#{signup.mobile_phone}" id="mobile_phone"
+								required="true" requiredMessage="*"
+								validatorMessage="Invalide Mobile Phone"
+								converterMessage="Please enter digits only.">
+								<f:validateLength minimum="8" maximum="10" />
+							</p:inputText>
+							<h:message for="mobile_phone" style="color: red;" />
+
+							<h:outputLabel for="profile_pic" value="Profil picture" />
+							<p:fileUpload value="#{signup.uploadedFile}" mode="simple"
+								skinSimple="true" id="profile_pic" label=" Browse "  />
+							<h:message for="profile_pic" style="color: red;"/>	
+
+						</h:panelGrid>
+
+						<p:commandButton value="Go" icon="ui-icon-circle-check"
+							ajax="false" action="#{signup.doSignUp()}"></p:commandButton>
+					</h:form>
+
+				</p:tab>
+				<p:tab title="How does it work ? " closable="true">
+                        Do you have a movie theater n' wanna increase your revenue ? 
+                        you are in the perfect location to do so ... 
+                        <br />
+					<br />
+					<ul type="circle">
+						<li>Manage your own movie theater</li>
+						<li>Plan movie sessions anytime 24/7 !</li>
+					</ul>
+				</p:tab>
+
+			</p:accordionPanel>
+
+		</p:layoutUnit>
+		<br />
+	</ui:define>
+
+</ui:composition>
