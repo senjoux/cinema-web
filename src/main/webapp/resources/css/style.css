@@ -1,13 +1,48 @@
-h4{
-	
+h4 {
 	color: green;
 }
+/*
 .fa-sign-in{
-	color: #bb1300;
+	color: #c0c0c0;
 }
-.fa-home{
-	color: #bb1300;
+.fa-home {
+	color: #c0c0c0;
 }
-.fa-angellist{
+*/
+.fa-hand-o-up {
 	color: #e4df21;
+}
+
+.capitalized {
+	text-transform: capitalize;
+}
+
+.no-borders{
+	border: none;
+	/*
+	border-right:none;
+	border-top:none;
+	border-bottom:none;
+	border-left-color: black;
+	border-width: medium;	
+	*/
+}
+
+.identity-form {
+	border-color: black;
+	border-width: thin;
+}
+
+.black-color{
+	color: black;
+}
+
+#personal{
+	overflow: hidden;
+}
+
+.userImg{
+	border-radius: 20px;
+	border-bottom: thick;
+	border-bottom-color: yellow;
 }

@@ -39,7 +39,7 @@ public class AccessBean {
 			if (!found.isLocked()) {
 					
 					FacesContext.getCurrentInstance().addMessage(null,
-							new FacesMessage(FacesMessage.SEVERITY_INFO, " • Your account is locked for the time beeing, we'll contact you soon •", null));
+							new FacesMessage(FacesMessage.SEVERITY_INFO, " • Your account is locked for the time being, we'll contact you soon •", null));
 			} else {
 				// set du identified user
 				identityBean.setIdentifiedUser(found);

@@ -7,11 +7,14 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
 
-	<ui:define name="title">MallaCinema-Home</ui:define>
+	<ui:define name="title">MallaCinema - Account</ui:define>
 
 	<ui:define name="content">
 		<p:layoutUnit position="center" styleClass="no-borders">
-			<h4>diff movie sessions for public users</h4>
+
+			<ui:include src="/manager/managerDetails.xhtml" />
+			<p:separator />
+			<ui:include src="/manager/theaterDetails.xhtml" />
 		</p:layoutUnit>
 	</ui:define>
 

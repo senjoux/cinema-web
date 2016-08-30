@@ -16,13 +16,8 @@ public class IdentityBean {
 	
 	public IdentityBean(){}
 	
-	/*
-	@PostConstruct
-	public void cc(){
-		identifiedUser=new Manager();
-	}
-	 */
-
+	
+	
 	public User getIdentifiedUser() {
 		return identifiedUser;
 	}

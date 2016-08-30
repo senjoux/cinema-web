@@ -6,19 +6,19 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:p="http://primefaces.org/ui">
 
-	<p:menu>
-		<p:submenu>
+	<p:menu styleClass="identity-form">
+<!-- 		<p:submenu> -->
 			<p:menuitem rendered="#{not empty identity.identifiedUser}"
 				action="#{access.doLogout}" value="Log out" ajax="false"
-				icon="fa fa-sign-out" />
+				icon="fa fa-sign-out fa-fw" />
 
 			<p:menuitem rendered="#{empty identity.identifiedUser}"
 				value="Sign in " outcome="/signin?faces-redirect=true"
-				icon="fa fa-sign-in" ajax="false" />
+				icon="fa fa-sign-in fa-fw" ajax="false" />
 			<p:menuitem rendered="#{empty identity.identifiedUser}"
 				value="Sign up" outcome="/signup?faces-redirect=true"
-				icon="fa fa-angellist" ajax="false" />
-		</p:submenu>
+				icon="fa fa-hand-o-up fa-fw" ajax="false" />
+<!-- 		</p:submenu> -->
 	</p:menu>
 
 </ui:composition>

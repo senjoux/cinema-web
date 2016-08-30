@@ -11,15 +11,15 @@
 		<param-name>primefaces.THEME</param-name>
 		<param-value>blitzer</param-value>
 	</context-param>
-
+<!-- 	le-frog -->
 	<context-param>
 		<param-name>facelets.SKIP_COMMENTS</param-name>
 		<param-value>true</param-value>
 	</context-param>
-	
+
 	<context-param>
 		<param-name>primefaces.FONT_AWESOME</param-name>
 		<param-value>true</param-value>
 	</context-param>
-	
+
 </web-app>

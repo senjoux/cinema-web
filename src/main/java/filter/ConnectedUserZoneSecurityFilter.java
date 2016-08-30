@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import beans.IdentityBean;
 
-@WebFilter("/login.jsf")
+@WebFilter(urlPatterns ={"/signin.jsf","/signup.jsf","/home.jsf"})
 public class ConnectedUserZoneSecurityFilter implements Filter {
 
 	@Override
@@ -34,13 +34,18 @@ public class ConnectedUserZoneSecurityFilter implements Filter {
 		
 		// if a connected manager
 		if (identity != null && identity.getIdentifiedUser() != null && identity.hasRole("Manager")) {
+
 			status = "m";
 		}
 
 		
+		if (status.equalsIgnoreCase("n")) {
+			chain.doFilter(request, response);
+		}
 		if (status.equalsIgnoreCase("m")) {
 			resp.sendRedirect(req.getContextPath() + "/manager/home.jsf");
 		}
+		
 
 	}
 

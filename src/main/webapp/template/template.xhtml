@@ -24,20 +24,21 @@
                     [Content will be inserted here]
          </ui:insert>
 		<p:layoutUnit position="west" size="300" collapsible="false" footer=""
-			header="" id="nav-tab">
-			<p:panel position="center">
-				<p:menu>
-					<p:menuitem value="Home" outcome="home" icon="fa fa-home" />
-<!-- 					<p:menuitem rendered="#{empty identity.identifiedUser}" -->
-<!-- 			value="My Theater" outcome="/signin?faces-redirect=true" icon="fa fa-sign-in" ajax="false" /> -->
-				</p:menu>
-				<h:form id="identity-form">
-				<ui:include src="/template/identity.xhtml" />
+			header="" id="nav-tab" styleClass="no-borders">
+			<p:panel position="center" styleClass="no-borders">
+				<h:form id="nav-form" styleClass="no-borders">
+					<p:menu styleClass="no-borders">
+						<p:menuitem value="Home" outcome="home" icon="fa fa-home fa-fw" />
+						<ui:include src="/template/nav.xhtml" />
+					</p:menu>
 				</h:form>
-			</p:panel>
-			
-			<p:panel>
-				<h:graphicImage value="/resources/images/rsz_cinema-clipart.png"></h:graphicImage>
+				<h:form id="identity-form">
+					<ui:include src="/template/identity.xhtml" />
+				</h:form>
+				<h:graphicImage value="/resources/images/rsz_cinema-clipart.png"
+					class="cinema-img"></h:graphicImage>
+
+
 			</p:panel>
 
 		</p:layoutUnit>
