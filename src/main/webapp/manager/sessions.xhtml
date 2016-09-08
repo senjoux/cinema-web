@@ -11,7 +11,102 @@
 
 	<ui:define name="content">
 		<p:layoutUnit position="center" styleClass="no-borders">
-			crud sessions du theater manager 
+			<h:form id="form">
+				<p:growl id="msgs" showDetail="false" />
+				<p:outputPanel id="mySessions">
+					<p:dataTable value="#{sessionBean.sessions}" var="itemS"
+						id="sessionsTable" scrollable="true" scrollHeight="150"
+						selectionMode="single" style="width: 90%"
+						emptyMessage="No sessions found !" rowKey="#{itemS.id}">
+						<f:facet name="header">
+							<p:outputPanel>
+								<span class="fa fa-list fa-fw" />
+								<h:outputLabel value="Sessions" />
+							</p:outputPanel>
+						</f:facet>
+						<p:column headerText="Movie" ortBy="#{itemS.movie.title}"
+							filterBy="#{itemS.movie.title}" filterMatchMode="contains">
+							<h:outputText value="#{itemS.movie.title}" />
+						</p:column>
+
+						<p:column headerText="Date " sortBy="#{itemS.id.date}">
+							<h:outputText value="#{itemS.id.date}" />
+						</p:column>
+
+						<p:column headerText="Action ">
+							<p:commandLink value="Remove" styleClass="fa fa-remove fa-fw"
+								action="#{sessionBean.deleteSession(itemS)}"
+								update=":form:mySessions" process=":form:mySessions" />
+						</p:column>
+
+					</p:dataTable>
+				</p:outputPanel>
+
+				<p:separator />
+				<!-- 				<p:panel header="Create a new Session" style="margin-bottom:20px" -->
+				<!-- 					styleClass="no-borders" > -->
+				<p:outputPanel id="new_session">
+					<table style="width: 80%">
+						<tr>
+							<td><p:dataTable var="mov" value="#{sessionBean.movies}"
+									widgetVar="sessionsTable" emptyMessage="No movies found !"
+									scrollable="true" scrollHeight="150" selectionMode="single"
+									selection="#{sessionBean.selectedMovie}" rowKey="#{mov.id}"
+									reflow="true" rows="5" paginator="true"
+									style="table-layout: fixed">
+									<f:facet name="header">
+										<p:outputPanel>
+											<span class="fa fa-play fa-fw" />
+											<h:outputLabel value="Movies" />
+										</p:outputPanel>
+									</f:facet>
+									<p:ajax event="rowSelect" listener="#{sessionBean.onRowSelect}"
+										update="form:btn_add" />
+									<p:ajax event="rowUnselect"
+										listener="#{sessionBean.onRowUnselect}" update="form:btn_add" />
+
+									<p:column headerText="Title" id="title_col"
+										sortBy="#{mov.title}" filterBy="#{mov.title}"
+										filterMatchMode="contains">
+										<h:outputText value="#{mov.title}" />
+									</p:column>
+									<p:column headerText="Type" id="type_col"
+										filterBy="#{mov.type}" filterMatchMode="contains">
+										<h:outputText value="#{mov.type}" />
+									</p:column>
+									<p:column headerText="Length" id="length_col"
+										sortBy="#{mov.length}">
+										<h:outputText value="#{mov.length}" />
+									</p:column>
+								</p:dataTable></td>
+							<td valign="top"><h:panelGrid columns="3">
+									<p:outputLabel for="popup" value=""
+										styleClass="fa fa-calendar fa-fw" />
+									<p:calendar id="popup" value="#{sessionBean.date}"
+										pattern="MM/dd/yyyy HH" stepHour="1"
+										mindate="#{sessionBean.currentDate}"
+										placeholder="Date Ex : 05/05/1992 5" required="true"
+										requiredMessage="Date is missing">
+									</p:calendar>
+								</h:panelGrid> <!-- 								<p:messages globalOnly="true" autoUpdate="true"  -->
+								<!-- 									closable="true" showDetail="false" showIcon="false" -->
+								<!-- 									redisplay="false" /> --></td>
+						</tr>
+						<tr>
+							<td><p:commandButton id="btn_add" value="Add "
+									action="#{sessionBean.createNewSession()}"
+									icon="ui-icon-circle-check"
+									disabled="#{!sessionBean.movieSelected}"
+									update="mySessions msgs @parent">
+									<!-- 									<p:collector value="#{sessionBean.session}" -->
+									<!-- 										addTo="#{sessionBean.sessions}" unique="true" /> -->
+								</p:commandButton></td>
+						</tr>
+					</table>
+				</p:outputPanel>
+				<!-- 				</p:panel> -->
+			</h:form>
+
 		</p:layoutUnit>
 	</ui:define>
 

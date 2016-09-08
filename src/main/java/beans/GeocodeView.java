@@ -1,5 +1,6 @@
 package beans;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -16,7 +17,8 @@ import org.primefaces.model.map.Marker;
 public class GeocodeView {
      
     private MapModel geoModel;
-    private String centerGeoMap = "41.850033, -87.6500523";
+    private String centerGeoMap = "37.272181, 9.870840";
+    
      
     @PostConstruct
     public void init() {
@@ -47,6 +49,8 @@ public class GeocodeView {
     public String getCenterGeoMap() {
         return centerGeoMap;
     }
+
+	
  
    
 }

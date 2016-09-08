@@ -6,11 +6,7 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:p="http://primefaces.org/ui">
 
-	<script type="text/javascript">
-			window.onload = function() {
-				 PF('geoMap').geocode(document.getElementById('address').value);
-			};		   
-  	</script>
+
 
 	<script type="text/javascript"
 		src="http://maps.google.com/maps/api/js?key=AIzaSyAgPtJCPW30ljBskPp3XBatbPgb8q3q4O4" />
@@ -24,60 +20,63 @@
 		<p:spacer height="20" />
 
 
-		<h:form>
+		<h:form prependId="false" id="myMapForm">
 			<div class="ui-g ui-grid-responsive">
 				<div class="ui-grid-col-8">
 					<h:panelGrid columns="2">
-
-						<h:outputLabel value="Name " />
-						<p:inputText required="true" label="name"
-							value="#{managerDetails.identifiedManagerTheater.name}"
-							readonly="true" />
-
-						<h:outputLabel value="Address" />
-						<h:panelGrid columns="1">
-							<p:inputText required="true"
-								value="#{managerDetails.identifiedManagerTheater.adresse}"
+						<h:panelGrid columns="2">
+							<h:outputLabel value="Name " />
+							<p:inputText required="true" label="name"
+								value="#{managerDetails.identifiedManagerTheater.name}"
 								readonly="true" />
+
+							<h:outputLabel value="Address" />
+							<h:panelGrid columns="1">
+								<p:inputText required="true" id="address"
+									value="#{managerDetails.identifiedManagerTheater.adresse}"
+									readonly="true" />
+							</h:panelGrid>
+							<h:outputLabel value="Capacity" />
+							<p:inputText required="true"
+								value="#{managerDetails.identifiedManagerTheater.capacity}"
+								readonly="true" />
+
+							<h:outputLabel value="Phone " />
+							<p:inputText required="true" label="Phone"
+								value="#{managerDetails.identifiedManagerTheater.telephone}"
+								readonly="true" />
+
+							<h:outputLabel value="3D Projection " for="is3D" />
+							<p:selectOneRadio id="is3D"
+								value="#{managerDetails._3DTheater ? 'Yes' : 'No'}">
+								<f:selectItem itemLabel="Yes" itemValue="Yes" />
+								<f:selectItem itemLabel="No" itemValue="No" />
+							</p:selectOneRadio>
+
+							<h:outputLabel value="Projection Type" for="projectionType"
+								rendered="#{managerDetails._3DTheater}" />
+							<p:inputText required="true" id="projectionType"
+								value="#{managerDetails.projectionType}" readonly="true"
+								rendered="#{managerDetails._3DTheater}" />
 						</h:panelGrid>
-						<h:outputLabel value="Capacity" />
-						<p:inputText required="true"
-							value="#{managerDetails.identifiedManagerTheater.capacity}"
-							readonly="true" />
-
-						<h:outputLabel value="Phone " />
-						<p:inputText required="true" label="Phone"
-							value="#{managerDetails.identifiedManagerTheater.telephone}"
-							readonly="true" />
-
-						<h:outputLabel value="3D Projection " for="is3D" />
-						<p:selectOneRadio id="is3D"
-							value="#{managerDetails._3DTheater ? 'Yes' : 'No'}">
-							<f:selectItem itemLabel="Yes" itemValue="Yes" />
-							<f:selectItem itemLabel="No" itemValue="No" />
-						</p:selectOneRadio>
-
-						<h:outputLabel value="Projection Type" for="projectionType"
-							rendered="#{managerDetails._3DTheater}" />
-						<p:inputText required="true" id="projectionType"
-							value="#{managerDetails.projectionType}" readonly="true"
-							rendered="#{managerDetails._3DTheater}" />
-
+						<p:gmap id="geoGmap" widgetVar="geoMap" styleClass="mymap"
+							center="#{geocodeView.centerGeoMap}" zoom="15" type="HYBRID"
+							model="#{geocodeView.geoModel}" style="width:350px;height:200px">
+							<p:ajax event="geocode" listener="#{geocodeView.onGeocode}"
+								update="@this" />
+						</p:gmap>
 					</h:panelGrid>
 				</div>
 				<!-- 				<div class="ui-grid-col-2"> -->
-				<h:form prependId="false" id="myMapForm">
-					<p:gmap id="geoGmap" widgetVar="geoMap"
-						center="#{geocodeView.centerGeoMap}" zoom="15" type="ROADMAP"
-						model="#{geocodeView.geoModel}" style="width:200px;height:200px">
-						<p:ajax event="geocode" listener="#{geocodeView.onGeocode}"
-							update="@this" />
-					</p:gmap>
 
-				</h:form>
+
 				<!-- 				</div> -->
 			</div>
 		</h:form>
 	</p:panel>
-
+	<script type="text/javascript">
+			window.onload = function() {
+		 		PF('geoMap').geocode(document.getElementById('address').value);
+			};		   
+ 		</script>
 </ui:composition>
