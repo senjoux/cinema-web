@@ -41,10 +41,8 @@ h4 {
 	overflow: hidden;
 }
 
-.userImg{
+.roundImg{
 	border-radius: 20px;
-	border-bottom: thick;
-	border-bottom-color: yellow;
 }
 .mymap{
 	 padding-left: 6cm;
